@@ -5,7 +5,9 @@ Twitter API
 - A short script that pulls twitter data from the twitter api based on a certain user.
 
 Various Visualizations
-- Seaborn and Plotly visualizations for the SierraLeoneAIMS data set
+- Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
+- the Notebook cannot visualize plotly graphs, so click on the link to the plotly website to visualize. 
+
 
 
 
