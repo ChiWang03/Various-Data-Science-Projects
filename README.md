@@ -14,6 +14,9 @@ Various Visualizations
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
 - the Notebook cannot visualize plotly graphs, so click on the link to the plotly website to visualize. 
 
+Natural Language Processing for fun 
+- Preprocessing data and looking at frequencies on the wine data set and web pages
+
 
 
 
