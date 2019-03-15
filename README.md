@@ -4,6 +4,12 @@ Mining Association Rules on the OKcupid data set
 Twitter API
 - A short script that pulls twitter data from the twitter api based on a certain user.
 
+Plotly Dash Housing Dashboard
+- using Zillow's property dataset and another housing dataset from Kaggle (boston property information)
+- made a 4 tab dashboard using Plotly Dash visualizing Zillow housing data
+- Includes: Geolocation plots of property location, Interactive Volume bar plots, Lasso Coefficients
+- Includes sliders and drop downs and various interactive functions 
+
 Various Visualizations
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
 - the Notebook cannot visualize plotly graphs, so click on the link to the plotly website to visualize. 
