@@ -21,7 +21,7 @@ Mining Association Rules on the OKcupid data set
 Analysis of Seismic data using GAM (Generalized Additive Models) 
 - Compared different models (MLR, B-splines, GAM using gamma family log link and gaussian using Tensor-Product and Thin-Plated Splines) 
 - Constructed a contour plot for visualization purposes 
-- used GCV, AIC and deviance explained for model selection. 
+- used GCV, AIC R^2 and deviance explained for model selection. 
 
 
 
