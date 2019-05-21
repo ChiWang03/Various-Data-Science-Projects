@@ -1,4 +1,4 @@
-Mining Association Rules on the OKcupid data set
+(Mining Association Rules on the OKcupid data set)[https://github.com/chiwang0503/Various-Data-Science-Projects/tree/master/Association%20Rules]
 - This short notebook explores the OkCupid data set by mining association rules and finding latent information about dating profiles
 
 Unsupervised Learning
