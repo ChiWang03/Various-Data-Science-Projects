@@ -12,9 +12,6 @@ Various Visualizations
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
 - the Notebook cannot visualize plotly graphs, so click on the link to the plotly website to visualize. 
 
-Natural Language Processing for fun 
-- Preprocessing data and looking at frequencies on the wine data set and web pages
-
 Mining Association Rules on the OKcupid data set
 - This short exploration was done for data 572 as part of an assignment, but further improved later on for deeper exploration
 
