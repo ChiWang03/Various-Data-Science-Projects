@@ -1,5 +1,5 @@
 Mining Association Rules on the OKcupid data set
-- 
+- This short notebook explores the OkCupid data set by mining association rules and finding latent information about dating profiles
 
 Twitter API
 - A short script that pulls twitter data from the twitter api based on a certain user.
