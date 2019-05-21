@@ -14,4 +14,11 @@ Various Visualizations
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
 - The Notebook cannot visualize interactive plotly graphs (Links are provided in the notebook for interactive purposes)
 
+PyTorch Neural Networks
+- Multiple Notebooks that uses PyTorch to explore Neural Neural Networks. 
+- lab work done for data 586: Advanced Machine Learning
+  - lab1: Multilayer Perceptron
+  - lab2: Convolutional Neural Networks
+  - lab3: Recurrent Neural Networks
+  - lab4: Stochastic Gradient Descent and Regularization
 
