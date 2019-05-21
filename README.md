@@ -1,20 +1,17 @@
+Mining Association Rules on the OKcupid data set
+- 
 
 Twitter API
 - A short script that pulls twitter data from the twitter api based on a certain user.
 - In this case Elon Musk's tweets were pulled. 
 
 Plotly Dash Housing Dashboard
-- using Zillow's property dataset and another housing dataset from Kaggle (boston property information)
-- made a 4 tab dashboard using Plotly Dash visualizing Zillow housing data
-- Includes: Geolocation plots of property location, Interactive Volume bar plots, Lasso Coefficients
-- Includes sliders and drop downs and various interactive functions 
+- Visualized Zillow's property dataset and the housing dataset from Kaggle (boston property information)
+- Created a 4 tab dashboard using Plotly Dash for the visualizations
+- Includes: Geolocation plots of property location, Interactive Volume bar plots, Lasso Coefficients slider plots
 
 Various Visualizations
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
-- the Notebook cannot visualize plotly graphs, so click on the link to the plotly website to visualize. 
-
-Mining Association Rules on the OKcupid data set
-- This short exploration was done for data 572 as part of an assignment, but further improved later on for deeper exploration
-
+- The Notebook cannot visualize interactive plotly graphs (Links are provided in the notebook for interactive purposes)
 
 
