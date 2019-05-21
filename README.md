@@ -1,6 +1,13 @@
 Mining Association Rules on the OKcupid data set
 - This short notebook explores the OkCupid data set by mining association rules and finding latent information about dating profiles
 
+Unsupervised Learning
+
+- Done for data 573: Unsupervised Learning
+- Hiearchical clustering using different linkages on HouseVotes84 (mlbench) data transformed with Gower's distance
+- Perforemd Factor Analysis on ability.cov data
+- Using PCA and NMF on hand written digits data to decide how many components are to be kept for digit recognition.
+
 Twitter API
 - A short script that pulls twitter data from the twitter api based on a certain user.
 - In this case Elon Musk's tweets were pulled. 
