@@ -1,0 +1,241 @@
+---
+title: "Assignment-1-573"
+author: "Chi"
+date: '2019-02-18'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Q1
+## a)
+```{r}
+library(gclus)
+data(bank)
+head(bank,3)
+df <- subset(bank, select = -c(Bottom,Status))
+head(df,3)
+```
+The euclidean distance measure is appropriate since all the infromation on the bank note is measured on the same scale, which in this case is (mm)。
+
+## b)
+```{R}
+euclid <- dist(df,method="euclidean")
+single <- hclust(euclid, method ="single")
+average <- hclust(euclid, method ="average")
+complete <- hclust(euclid, method ="complete")
+
+#dendrograms
+par(mfrow =c(1,3))
+plot(single , main= "Single Linkage", xlab="", sub ="",cex =.7)
+plot(average , main = "Average Linkage", xlab="", sub ="",cex =.7)
+plot(complete ,main = "Complete Linkage", xlab="", sub ="",cex =.7)
+```
+
+## c) 
+I would choose 'average linkage' with the largest jump at 2 clusters. 
+
+It may seem that complete linkage will work alright but after looking at the misclassfication the complete linkage doesn't perform well either for 2 or 3 clusters. 
+
+In addtion, single linkage has the chaining phenomenon where clusters may be forced together due to single elements being close to each other, even though many of the elements in each cluster may be very distant to each other (wiki).
+
+
+## d)
+```{R}
+#cut at largest jump 2
+table(cutree(average,2), bank$Status)
+```
+misclassification rate is (1/200) = 0.005 (.5 percent), which is very low.
+
+This concludes Average linkage is doing well by clustering the data into two clusters.
+
+## e) 
+```{R}
+set.seed(632)
+dfscaled <- kmeans(scale(df), 2)
+table(dfscaled$cluster,bank$Status)
+```
+Missclassiciation rate is (22/200) = 0.11 (11 percent). 
+
+## f) 
+```{R}
+set.seed(632)
+dfunscaled <- kmeans(df,2)
+table(dfunscaled$cluster,bank$Status)
+
+#variances of each explantory variable 
+var(df$Length)
+var(df$Left)
+var(df$Right)
+var(df$Top)
+var(df$Diagonal)
+```
+The reason here is that the measurements are already in the same units (mm). In addtion, k-means tend to produce some what a round cluster. In this case, unequal variances suggest that more weight is placed on variables with smaller variance, which might be the reason why it is clustering better. 
+
+
+## g)
+Overall, what does the (generally) strong performance of unsupervised methods signify
+for this data set?
+
+The generally strong performance of 2 cluster hierarchical clustering and kmeans suggest that there are 2 groups in the data. This is true since we know that there are only couterfeit and not counterfeit in the status column. 
+
+# Q2
+## a)
+```{R}
+lots <- load("lots.Rdata")
+df <- data.frame(clusts,datmat)
+#install.packages("randomcoloR")
+library(randomcoloR)
+palette <- distinctColorPalette(20)
+plot(df$X1, df$X2, col=palette[clusts])
+```
+
+## b)
+
+```{R}
+library(mclust)
+set.seed(461)
+table(df$clusts)
+kmeans1 <- kmeans(datmat, 20)
+adjustedRandIndex(kmeans1$cluster,df$clusts)
+```
+Adjusted Rand Index: 0.8317588
+
+## c)
+```{R}
+library(mclust)
+set.seed(41)
+kmeans2 <- kmeans(datmat, 20)
+adjustedRandIndex(kmeans2$cluster,df$clusts)
+```
+Adjusted Rand Index: 0.6747311
+
+## d) 
+```{R}
+library(mclust)
+set.seed(461)
+kmeans3 <- kmeans(datmat, 20, nstart = 1000)
+adjustedRandIndex(kmeans3$cluster,df$clusts)
+```
+Adjusted Rand Index: 0.9438239
+
+## e)
+```{R}
+library(mclust)
+set.seed(41)
+kmeans4 <- kmeans(datmat, 20, nstart = 1000)
+adjustedRandIndex(kmeans4$cluster,df$clusts)
+``` 
+Adjusted Rand Index: 1
+
+# f)
+The adjusted rand index increases in accuracy when the nstart is increased up to 1000. Since without specifying nstart kmeans start with only 1 configurations, which gives a lower adjusted rand index. This also tells us k-means works with trial and error so running it a few different times may give different results. 
+
+# Q3
+
+```{R}
+my_k_means <- function(x, k){
+  #1 start with k centroids
+  centrs <- x[sample(1:nrow(x), k),]
+  #start loop
+  changing <- TRUE  
+  while(changing){
+    #2a) calculate distances between all x and centrs
+    dists <- matrix(NA, nrow(x), k)
+    #could write as a double loop, or could utilize other built in functions probably
+    for(i in 1:nrow(x)){
+      for(j in 1:k){
+        dists[i, j] <- sqrt(sum((x[i,] - centrs[j,])^2)) 
+      }
+    }
+    #2b) assign group memberships (you probably want to provide some overview of apply functions) 
+    membs <- apply(dists, 1, which.min)
+    
+    #3) calculate new group centroids
+    oldcentrs <- centrs #save for convergence check!
+    for(j in 1:k){
+      centrs[j,] <- colMeans(x[membs==j, ])
+    }
+    
+    #4) check for convergence
+    if(all(centrs==oldcentrs)){
+      changing <- FALSE
+    }
+  }
+  #output memberships
+  membs
+}
+
+#install.packages("mvtnorm")
+library(mclust)
+
+library(mvtnorm)
+set.seed(35151)
+le <- rmvnorm(400, mean = c(-5,7.5))
+re <- rmvnorm(400, mean = c(5,7.5))
+hd <- rmvnorm(400, mean = c(0,0), sigma=7*diag(2) )
+dat <- rbind(le, re, hd)
+par(mfrow=c(1,2))
+
+mickres <- my_k_means(scale(dat), 3)
+
+plot(dat, col=mickres, main =" K-means")
+
+clust1 <- Mclust(scale(dat))
+plot(dat,col=clust1$classification,main ="Mclust")
+```
+Yes, Mclust results seem more sensible than k-means. The reason here as mentioned in class is that k-means is a highly restricted mixture model.
+Unlike Mclust there is no covariance in k-means assuming independence among the variables. This is why we can see that in k-means the clustering around the ears of the mouse is not clustered well, but Mclust is clustering the ears well. 
+
+# Q4
+```{R}
+sim<- load("asim.Rdata")
+df <- data.frame(asim)
+mod1 <- lm(y~., data = df)
+
+#check some assumptions first 
+summary(mod1) #so adjusted R squared = .735 for the full model
+
+par(mfrow=c(2,2))
+plot(mod1)
+#so first of all the residuals vs fitted indicates strong linearity since we dont see any sort of pattern must be a linear function
+
+#seems very linear but it also seems like there are outliers (point 315)
+```
+I tried out adding interaction terms and removing high leverage points and outliers. 
+
+It did turn out to have an R^2 over 99 but this will happen if we just keep adding more predictors i.e. interactions terms. 
+
+In addition, this is overfitting so lets try some unsuperivised methods. 
+
+The code below show that I used kmeans to try unsupervised clustering. I chose two clusters since when we plot out the correlation pairs plot using R. The variable V7 seems to be clearly seperated into two groups. This indicated that I could probably try out some clustering methods such as kmeans or hiearchical clustering. 
+
+The results show that there is some underlying classification with this dataset, and indeed it was two clusters. Therefore I seperated the dataset into two by the cluster labels, and ran a linear model on top of the two datasets. This gave us two models with over 99 in R^2 and adjusted R^2. 
+
+```{R}
+x <- subset(df, select = -c(y))
+kmeansasim <- kmeans(scale(x), 2)
+
+withclusts <- cbind(df,kmeansasim$cluster)
+
+clust1 <- subset(withclusts, kmeansasim$cluster =="1")
+clust2 <- subset(withclusts, kmeansasim$cluster =="2")
+
+df1 <-subset(clust1, select = -c(11))
+df2 <-subset(clust2, select = -c(11))
+
+mod1 <- lm(y~., data =df1)
+summary(mod1)
+mod2 <- lm(y~., data =df2)
+summary(mod2)
+```
+
+# Q5
+
+on picture
+
+
+
+
