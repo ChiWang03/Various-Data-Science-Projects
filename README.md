@@ -1,6 +1,7 @@
 
 Twitter API
 - A short script that pulls twitter data from the twitter api based on a certain user.
+- In this case Elon Musk's tweets were pulled. 
 
 Plotly Dash Housing Dashboard
 - using Zillow's property dataset and another housing dataset from Kaggle (boston property information)
