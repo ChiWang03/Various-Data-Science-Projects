@@ -1,0 +1,313 @@
+---
+title: "Assignment-2-573-chi"
+author: "Chi"
+date: '2019-03-16'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question 1
+
+## a)
+```{R}
+library(mlbench)
+data(HouseVotes84)
+
+HV <- data.frame(lapply(HouseVotes84,as.character),stringsAsFactors=FALSE)
+HV[is.na(HV)] <- 'NoVote'
+
+# change to factor
+HV <- as.data.frame(unclass(HV))
+head(HV)
+```
+
+## b) 
+```{R}
+library(StatMatch)
+dat <- HV[c(-1)]
+
+#gow.matrix <- gower.dist(dat) #this will not work since hclust doesnt take this type
+#gow.matrix <- as.matrix(gow.matrix)
+
+# Lets try daisy gower distance instead
+library(cluster)
+gower.dist <- daisy(dat, metric = "gower")
+
+```
+
+
+## c)
+```{R}
+single <- hclust(gower.dist, method ="single")
+average <- hclust(gower.dist, method ="average")
+complete <- hclust(gower.dist, method ="complete")
+
+par(mfrow =c(1,3))
+plot(single , main= "Single Linkage", xlab="", sub ="",cex =.7)
+plot(average , main = "Average Linkage", xlab="", sub ="",cex =.7)
+plot(complete ,main = "Complete Linkage", xlab="", sub ="",cex =.7)
+```
+
+So lets probably take the Average or complete linkage clustering, but it seems like we can disregard complete linkage as well since it will be cut at its largest jump with three clusters. 
+
+In addition, single linkage has quite a lot of chaining so we dont pick.
+
+check misclassification to make sure we are picking the correct one since we do have the response
+
+```{R}
+table(HV$Class,cutree(average,2))
+
+#hooray it cannot be three because we only have democrats and republicans lets pick average linkage and cut at 2! 
+table(HV$Class,cutree(complete, 3) )
+```
+
+So as mentioned we will pick Average linkage with a cut at 2 at its biggest jump.
+
+It also makes more sense to pick average linkage since it cuts at 2 and we know our labels are republicans and democrats 
+
+The misclassification is (166+1)/(435) = 0.384 
+
+# d) 
+```{R}
+library(ggplot2)
+MDS <- cmdscale(gower.dist,eig=TRUE, k=2) 
+MDSframe <- data.frame(MDS$points)
+ggplot(MDSframe, aes(X1, X2)) + geom_point(aes(fill=HV$Class,col=HV$Class))
+```
+
+## e) 
+```{R}
+library(ggplot2)
+km <- kmeans(as.matrix(MDS$points), 2)
+ggplot(MDSframe, aes(X1, X2)) + geom_point(aes(fill=km$cluster,col=km$cluster))
+table(HV$Class, km$cluster)
+```
+
+
+## f) 
+```{R}
+library(mclust)
+library(mvtnorm)
+mixclust <- Mclust(scale(MDS$points))
+
+#plot(mclustBIC(MDS$points)) # could look at this to see plot similar to a scree plot
+summary(mixclust$BIC) #suggest 5 clusters 
+
+table(HV$Class, mixclust$classification) #classification table
+plot(MDS$points[,1],MDS$points[,2], col = mixclust$classification) # 2D scatter plot coloured by group membership
+```
+So BIC suggets 5 clusters.
+
+# Question 2 
+## a) 
+```{R}
+AC<- ability.cov$cov
+ACfac <- factanal(covmat = AC, factors = 1,rotation = "none", n.obs = 112)
+ACfac
+```
+
+This is not suitable since the p-value is 1.46e-12, which means that we have to reject the null hypothesis: assuming 1 factor is sufficient. 
+
+However, we want to fail to reject null hypothesis to have a suitable model!
+
+In addition the uniqueness row has quite high values => the variance not explained in that particular variable 
+
+Lastly, we notice that the variance explained of the factor is only 0.407. This is probaby not sufficient enough to explain the data. By adding more factors the cummulative distribution may increase to a point where we think is enough of variance explained. 
+
+
+## b) 
+```{R}
+ACcorfac <- factanal(covmat = cov2cor(AC), factors = 1,rotation = "none", n.obs=112)
+ACcorfac
+```
+Are there any differences in the model to the previous question?
+
+No differences because factor analysis is scale invariant! 
+
+So as mentioned in part a) we reject the null hypothesis that 1 factor is sufficient. 
+
+## c) 
+```{R}
+ACfac2 <- factanal(covmat = AC, factors = 2,rotation = "none", n.obs = 112)
+ACfac2
+```
+Two factors is enough since the pvalue 0.191 is > 0.05. This tells us that we fail to reject the null hypothesis and that 2 factors is sufficient. Other than that, our cummulative distribution increased to 0.597 and our row of uniqueness also decreased quite a lot in each of the variables. 
+
+Explanation of factors: 
+
+Description of data: Six tests were given to 112 individuals. The covariance matrix is given in this object.
+
+Factor 1 scores high on reading and vocab (and maybe general). We can probably explain this as the English ability.
+
+Factor 2 scores high on blocks, which probably means ability with block design (maybe logic thinking). 
+
+## d) 
+```{R}
+ACfacVar <- factanal(covmat = AC, factors = 2,rotation = "varimax", n.obs = 112)
+ACfacVar
+```
+Which elements of the output change? (The factor loadings have changed)
+
+The "varimax" rotation reduces the loadings of some factors and provide more interpretable factors. As explained in lecture it seeks for a gamma that loads heavily on only one factor. 
+
+Explanation of factors: 
+
+Factor 1 scores high on reading (decreased a little) and vocab (decreased a little). Probably still explaining the English ablity 
+
+Factor 2 scores high on blocks (increased). Probaly still explaining the ability to block design (logic thinking). 
+
+So what we see is that most of the factors that had high value without the varimax rotations, are still around the same but factor 2 increased significantly for all the loadings.
+
+## e) 
+```{R}
+ACfacPro <- factanal(covmat = AC, factors = 2,rotation = "promax", n.obs = 112)
+ACfacPro
+```
+What element is added to the output? the Factor Correlations 
+
+What assumptions have we relaxed that necessitates that output? We allow correlation among the factors => relaxed the assumption that the 2 factors are orthogonal to each other.
+
+Note: Promax is a non-orthogonal rotation (called oblique), popular for increasing the amount of variance explained by small q (allows correlation among factors)
+
+Explanation of Factors: 
+
+Factor 1: Now it is very clear that Factor 1 explains the ability in English in terms of scoring high on vocabulary tests and reading comprehension tests.(reading and vocab loadings increased significantly)
+
+Factor 2: It is also clear to us Factor two is most likely explaining the ability to block design (logical thinking). It is slighly possible that being well on the block also implies pretty ok with picutre completion (another logical test?). (blocks loading increased significantly)
+
+# Question 3) 
+
+```{R}
+# from lab 
+#####Get images
+to.read = file("t10k-images-idx3-ubyte", "rb")
+readBin(to.read, integer(), n=4, endian="big")
+
+####Build an image array (like the pain data)
+imarr <- array(0, dim=c(28,28,10000))
+for(i in 1:10000){
+  imarr[,,i] <- matrix(readBin(to.read,integer(), size=1, n=28*28, endian="big", signed="F"),28,28)[,28:1]
+}
+close(to.read)
+####Build a flattened image matrix
+immat <- t(apply(imarr, 3, as.vector))
+
+####Get Labels
+lab.read <- file("t10k-labels-idx1-ubyte", "rb")
+readBin(lab.read, 'integer', n = 1, size = 4, endian = 'big')
+n = readBin(lab.read, 'integer', n = 1, size = 4, endian = 'big')
+labls = readBin(lab.read, 'integer', n = n, size = 1, signed = FALSE)
+close(lab.read)
+```
+
+## a) Provide a plot of the first 25 images in the data 
+```{R}
+par(mfrow=c(5,5))
+par(mar=c(.5,.5,.5,.5))
+
+for (i in 1:25){
+  image(imarr[,,i], col = gray((0:32)/32))
+  }
+```
+
+## b) Run principal components (with scaling) on the images. What is the maximum number of components are permittable?
+```{R}
+# scale. = FALSE since there  are  0's 
+prnum<- prcomp(immat) #principal component of the number images
+
+dim(prnum$rotation)
+dim(immat)
+```
+
+The dimension of pca$rotation and immat tells us that the maximum permittable number of components is 784 .
+
+## c) Plot the first 25 resulting eigenvectors as images. What percentage of the original variation in the pixels is explained by the first 25 PCs?
+```{R}
+par(mfrow=c(5,5), omi=c(0,0,0,0), mai=c(0.1,0.1,0.1,0.1))
+
+for (i in 1:25){
+  image(matrix(prnum$rotation[,i], 28,28), col = gray((0:32)/32), xaxt="n", yaxt="n")
+  }
+```
+
+continue part c) to find the variation explained in the pixles explained by the first 25 PCs
+```{R}
+# source:https://stackoverflow.com/questions/23866765/getting-cumulative-proportion-in-pca
+variance <- apply(prnum$x, 2, var)  
+props <- variance / sum(variance)
+cumsum(props)[25]
+``` 
+
+PC25 tells us the that cummulative variance is 0.701898, which is 78% pretty good actually. 
+
+## d) Reconstruct approximations of the original observations using 25 PCs. Plot side-bysides for the first 10 digits of the reconstructions and originals in a 5x4 matrix of images.
+```{R}
+par(mfrow=c(5,4), omi=c(0,0,0,0), mai=c(0.1,0.1,0.1,0.1))
+
+for (j in 1:10){
+  reconst <- (t(prnum$rotation[,1:25] %*% t(prnum$x[,1:25])))
+  reconstructed <- (matrix(reconst[j,], 28,28))
+  image(reconstructed, col=gray((0:32)/32), xaxt="n", yaxt="n")
+  image(imarr[,,j], col = gray(10:2/11),xaxt="n", yaxt="n")
+}
+```
+
+## e) 
+```{R}
+load("nmfres.Rdata")
+par(mfrow=c(5,5), omi=c(0,0,0,0), mai=c(0.1,0.1,0.1,0.1))
+
+for(i in 1:25){
+    image((matrix(nmfres$h[i,], 28,28)),col = gray((0:32)/32), xaxt="n", yaxt="n")
+}
+```
+## Comment on the differences between these and the eigenvectors from part (b).
+
+We know that PCA has both negative and positive loadings (Eigenvectors), but NMF only has postive loadings (Eigenvectors). This is why the pictures from NMF is much darker than PCA. Note that PCA allows to add and subtract images from each other but not in NMF. 
+
+(From lecture we know that PCA can subtract the average face and differnent parts or what so ever and NMF restricts such a thing since in some particular data like spectral data this isn't allowed)
+
+## f) Reconstruct approximations of the original observations using 25 NMF bases. Plot side-by-sides for the first 10 digits of the reconstructions and originals in a 5x4 matrix of images
+```{R}
+par(mfrow=c(5,4), omi=c(0,0,0,0), mai=c(0.1,0.1,0.1,0.1))
+nmfrec <- nmfres$w %*% nmfres$h
+
+for(i in 1:10){
+  image((matrix(nmfrec[i,], 28, 28)),col = gray((0:32)/32), xaxt="n", yaxt="n")
+  image(imarr[,,i],col = gray((0:32)/32),xaxt="n", yaxt="n")
+}
+```
+
+## g) Fit a classification tree with labels as the response variable and the NMF ‘scores’ as the predictors. Plot the tree.
+```{R}
+library(rpart)
+library(tree)
+
+df <- as.data.frame(cbind(nmfres$w,labls))
+df$labls<- as.factor(df$labls)
+
+tree1<- rpart(labls~.,data=df, method="class",control = rpart.control(minsplit = 20, xval = 10, cp = 0.01))
+
+par(mfrow=c(1,1))
+plot(tree1)
+text(tree1)
+```
+
+
+## h) Use ‘cv.tree’ with ‘prune.misclass’ as the function, how many nodes are suggested to be removed? What is the cross-validated misclassification rate of the best tree?
+
+cv.tree doesnt work for rpart and when Matthias and I did cv.tree for tree() it didn't work either so we took on a different method
+```{R}
+printcp(tree1)
+tree1$cptable
+prunedtree <- prune(tree1, cp=tree1$cptable[which.min(tree1$cptable[,"xerror"]),"CP"])
+prunedtree$cptable
+printcp(prunedtree)
+
+0.8865*0.40226
+```
+The cross validated misclassification rate 0.8865*0.40226 = 0.3566035. 
+
