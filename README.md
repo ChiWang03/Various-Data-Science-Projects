@@ -34,7 +34,7 @@
 
 
 
-[Various Visualizations](https://github.com/chiwang0503/Various-Data-Science-Projects/tree/master/Plotly%20Visualizations)
+[Various Visualizations](https://github.com/chiwang0503/Various-Data-Science-Projects/tree/master/Various%20Visualizations)
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
 - The Notebook cannot visualize interactive plotly graphs (Links are provided in the notebook for interactive purposes)
 
