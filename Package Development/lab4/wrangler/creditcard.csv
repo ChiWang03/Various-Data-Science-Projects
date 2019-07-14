@@ -1,0 +1,25 @@
+DOB,postal_code,Sex,credit_provider,credit_security_code
+1930-1959,2****,M,JCB 16 digit,297
+1930-1959,2****,M,Maestro,521
+1930-1959,3****,F,VISA 16 digit,565
+1930-1959,3****,F,Maestro,135
+1930-1959,4****,F,VISA 13 digit,897
+1930-1959,4****,F,VISA 16 digit,890
+1960-1979,3****,F,Discover,644
+1960-1979,3****,F,American Express,188
+1960-1979,3****,M,American Express,769
+1960-1979,3****,M,VISA 13 digit,259
+1960-1979,4****,M,VISA 19 digit,179
+1960-1979,4****,M,VISA 19 digit,532
+1980-1989,2****,F,JCB 16 digit,542
+1980-1989,2****,F,VISA 19 digit,845
+1980-1989,4****,M,JCB 16 digit,445
+1980-1989,4****,M,VISA 16 digit,252
+1980-1989,4****,F,VISA 16 digit,122
+1980-1989,4****,F,Maestro,745
+1990-1999,2****,F,VISA 19 digit,368
+1990-1999,2****,F,Maestro,972
+1990-1999,3****,M,Maestro,454
+1990-1999,3****,M,VISA 16 digit,800
+1990-1999,4****,M,JCB 16 digit,557
+1990-1999,4****,M,Maestro,530
