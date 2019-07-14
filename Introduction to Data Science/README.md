@@ -1,6 +1,6 @@
 Introduction to Data Science
 
-I was introduced to data science in 2015 where I did MATH 210 Mathematical Computing at UBC. This folder contains two short data wrangling projects I did for the course 
+I was introduced to data science in 2015 where I did MATH 210 Mathematical Computing at UBC. This folder contains two short data wrangling projects I did for the course and some other EDA notebooks dones back in 2015. 
 
 Math 210 Project 1
 - [Pandas Tutorial](https://github.com/chiwang0503/Various-Data-Science-Projects/tree/master/Introduction%20to%20Data%20Science/Pandas%20Tutorial)
