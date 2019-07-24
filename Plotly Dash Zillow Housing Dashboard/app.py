@@ -55,8 +55,8 @@ df = df[(df['taxvaluedollarcnt'] <= 10000000) & (df['taxvaluedollarcnt'] >= 2500
 
 df['DollarPerSquareFeet'] = df['DollarPerSquareFeet'].round()
 
-mapbox_access_token = 'pk.eyJ1IjoiYmlwYXJ0aXRlaHlwZXJjdWJlIiwiYSI6ImNqczFjZzUydjF0MGc0OW1sYWIwYW5lY2UifQ.l6OVeSa3poXp6S4s8km8kA'
-map_style = "mapbox://styles/bipartitehypercube/cjs26r8sw1cy31fqjhopqigtj"
+mapbox_access_token = ''
+map_style = ''
 
 scl = [0, "rgb(0,0,0)"], [0.1, "rgb(0, 0, 128)"], [0.2, "rgb(0, 25, 255)"], \
         [0.3, 'rgb(30,144,255)'], [0.75, "rgb(0, 0, 205)"], [1, "rgb(250, 250, 250)"]
