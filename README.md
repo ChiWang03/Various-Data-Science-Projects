@@ -10,6 +10,9 @@
   - Hiearchical clustering using different linkages on HouseVotes84 (mlbench) data, transformed Categorical/Binary variables in the data with Gower's distance
   - Perforemd Factor Analysis on ability.cov data 
   - Using PCA and NMF on hand written digits data to decide how many components are to be kept for digit recognition. 
+  
+[Customs Wait Time Analysis]()
+
 
 
 [Plotly Dash Zillow Housing Dashboard](https://github.com/chiwang0503/Various-Data-Science-Projects/tree/master/Plotly%20Dash%20Zillow%20Housing%20Dashboard)
