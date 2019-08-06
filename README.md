@@ -12,8 +12,12 @@
   - Using PCA and NMF on hand written digits data to decide how many components are to be kept for digit recognition. 
   
 [Customs Wait Time Analysis]()
-
-
+* EDA
+  * Exploratory data analysis on customs wait time
+  * suggest ways to optimize efficiency for customs boarder patrol agents
+* Multivariate Outlier Identification
+  * Using the PyOD libary in python to identify outliers
+  * two methods used: CBLOF (K-means) Cluster Based Local Outlier Factor and K Nearest Neighbors
 
 [Plotly Dash Zillow Housing Dashboard](https://github.com/chiwang0503/Various-Data-Science-Projects/tree/master/Plotly%20Dash%20Zillow%20Housing%20Dashboard)
 - Visualized Zillow's property dataset and the housing dataset from Kaggle (boston property information)
