@@ -1,4 +1,4 @@
-[Customs Wait Time EDA] ()
+[Customs Wait Time EDA]()
 * Exploratory data analysis on customs wait time 
 * suggest ways to optimize efficiency for customs boarder patrol agents
 
