@@ -1,17 +1,6 @@
-[Customs Wait Time EDA]()
-* Exploratory data analysis on customs wait time 
-* suggest ways to optimize efficiency for customs boarder patrol agents
-
-[Multivariate Outlier Identification]()
-* Using the PyOD libary in python to identify outliers 
-* two methods used: CBLOF (K-means) Cluster Based Local Outlier Factor and K Nearest Neighbors 
-* [PyOD documentation](https://pyod.readthedocs.io/en/latest/)
-* Two useful sources to get right into how to use this libary
-  * [Analytics Vidhya](https://www.analyticsvidhya.com/blog/2019/02/outlier-detection-python-pyod/)
-  * [Anomaly Detection for Dummies](https://towardsdatascience.com/anomaly-detection-for-dummies-15f148e559c1)
+Extracting key skills from Data Scientists and Machine Learning Engineer job posts
+* Scraped data off of indeed using `BeautifulSoup`
+* Conducted Topic modelling using `ldamallet` from `gensim` and Nonnegative Matrix Factorization and LDA from `sklearn`.
 
 
-
-
-
-
+Very interstingly this project requires a great understanding of the data itself. When we think of key skills of data scientists we think of natural language processing, machine vision, machine learning, etc. These are not unigrams but bigrams or trigrams. This is why preprocessing the data and running topic modelling methods using n-grams is so important in key skills extraction! Enjoy some intersting findings! 
