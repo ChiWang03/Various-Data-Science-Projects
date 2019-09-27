@@ -1,6 +1,9 @@
 
 
 [Unsupervised Learning](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Unsupervised%20Learning)
+
+2019
+
 - Unsupervised Learning 1 
   - Done for data 573: Unsupervised Learning 
   - Hiearchical clustering using different linkage methods on the bank data set. (Continuous Variables) 
@@ -13,6 +16,8 @@
   
 [Job Post Key Skills Extraction](https://github.com/ChiWang03/Various-Data-Science-Projects/tree/master/Job%20Post%20Key%20Skills%20Extraction)
 
+2019
+
 Extracting key skills from Data Scientists and Machine Learning Engineer job posts
 
 Scraped data off of indeed using BeautifulSoup
@@ -20,6 +25,10 @@ Conducted Topic modelling using ldamallet from gensim and Nonnegative Matrix Fac
 Very interstingly this project requires a great understanding of the data itself. When we think of key skills of data scientists we think of natural language processing, machine vision, machine learning, etc. These are not unigrams but bigrams or trigrams. This is why preprocessing the data and running topic modelling methods using n-grams is so important in key skills extraction! Enjoy some intersting findings!
 
 [Customs Wait Time Analysis](https://github.com/ChiWang03/Various-Data-Science-Projects/tree/master/Customs%20Wait%20Time%20Analysis)
+
+2019
+
+
 * Create Multiple Metrics to optimize customs wait time efficiency
 * EDA
   * Exploratory data analysis on customs wait time
@@ -30,33 +39,48 @@ Very interstingly this project requires a great understanding of the data itself
 * Note: comparison part of the outlier removal notebook is slightly messy still needs to be updated.
 
 [Plotly Dash Zillow Housing Dashboard](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Plotly%20Dash%20Zillow%20Housing%20Dashboard)
+
+2019
+
 - Visualized Zillow's property dataset and the housing dataset from Kaggle (boston property information)
 - Created a 4 tab dashboard using Plotly Dash for the visualizations
 - Includes: Geolocation plots of property location, Interactive Volume bar plots, Lasso Coefficients slider plots
 
 [Mining Association Rules on the OKcupid data set](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Association%20Rules)
+
+2019
+
+
 - This short notebook explores the OkCupid data set by mining association rules and finding latent information about dating profiles
 
 [PyTorch Neural Networks](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Pytorch%20Neural%20Networks)
+
+2019
+
 - Multiple Notebooks that uses PyTorch to explore Neural Neural Networks. 
 - lab work done for data 586: Advanced Machine Learning
   - lab1: Multilayer Perceptron
   - lab2: Convolutional Neural Networks
   - lab3: Recurrent Neural Networks
   - lab4: Stochastic Gradient Descent and Regularization
+ 
+ [Various Visualizations](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Various%20Visualizations)
 
-[Twitter API](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Twitter%20API)
-- A short script that pulls twitter data from the twitter api based on a certain user.
-- In this case Elon Musk's tweets were pulled. 
+2019
 
-
-
-[Various Visualizations](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Various%20Visualizations)
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
 - The Notebook cannot visualize interactive plotly graphs (Links are provided in the notebook for interactive purposes)
 
+[Twitter API](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Twitter%20API)
+
+2016
+
+- A short script that pulls twitter data from the twitter api based on a certain user.
+- In this case Elon Musk's tweets were pulled. 
 
 [Introduction to Data Science]()
+
+2016
 
 This was one of the first pandas EDA I've ever done (done in 2016)
 
