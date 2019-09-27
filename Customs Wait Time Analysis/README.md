@@ -1,3 +1,5 @@
+Note: there are some things to be fixed for the wait time comparison tables in the outlier removal notebook, it is still very messy. 
+
 [Customs Wait Time EDA]()
 * Exploratory data analysis on customs wait time 
 * suggest ways to optimize efficiency for customs boarder patrol agents
