@@ -12,6 +12,7 @@
   - Using PCA and NMF on hand written digits data to decide how many components are to be kept for digit recognition. 
   
 [Job Post Key Skills Extraction](https://github.com/ChiWang03/Various-Data-Science-Projects/tree/master/Job%20Post%20Key%20Skills%20Extraction)
+
 Extracting key skills from Data Scientists and Machine Learning Engineer job posts
 
 Scraped data off of indeed using BeautifulSoup
