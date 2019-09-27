@@ -2,8 +2,6 @@
 
 [Unsupervised Learning](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Unsupervised%20Learning)
 
-2019
-
 - Unsupervised Learning 1 
   - Done for data 573: Unsupervised Learning 
   - Hiearchical clustering using different linkage methods on the bank data set. (Continuous Variables) 
@@ -15,8 +13,6 @@
   - Using PCA and NMF on hand written digits data to decide how many components are to be kept for digit recognition. 
   
 [Job Post Key Skills Extraction](https://github.com/ChiWang03/Various-Data-Science-Projects/tree/master/Job%20Post%20Key%20Skills%20Extraction)
-
-2019
 
 Extracting key skills from Data Scientists and Machine Learning Engineer job posts
 
@@ -40,22 +36,15 @@ Very interstingly this project requires a great understanding of the data itself
 
 [Plotly Dash Zillow Housing Dashboard](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Plotly%20Dash%20Zillow%20Housing%20Dashboard)
 
-2019
-
 - Visualized Zillow's property dataset and the housing dataset from Kaggle (boston property information)
 - Created a 4 tab dashboard using Plotly Dash for the visualizations
 - Includes: Geolocation plots of property location, Interactive Volume bar plots, Lasso Coefficients slider plots
 
 [Mining Association Rules on the OKcupid data set](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Association%20Rules)
 
-2019
-
-
 - This short notebook explores the OkCupid data set by mining association rules and finding latent information about dating profiles
 
 [PyTorch Neural Networks](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Pytorch%20Neural%20Networks)
-
-2019
 
 - Multiple Notebooks that uses PyTorch to explore Neural Neural Networks. 
 - lab work done for data 586: Advanced Machine Learning
@@ -66,21 +55,15 @@ Very interstingly this project requires a great understanding of the data itself
  
  [Various Visualizations](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Various%20Visualizations)
 
-2019
-
 - Seaborn and Plotly visualizations for the SierraLeoneAIMS data set. 
 - The Notebook cannot visualize interactive plotly graphs (Links are provided in the notebook for interactive purposes)
 
 [Twitter API](https://github.com/chiwang03/Various-Data-Science-Projects/tree/master/Twitter%20API)
 
-2016
-
 - A short script that pulls twitter data from the twitter api based on a certain user.
 - In this case Elon Musk's tweets were pulled. 
 
 [Introduction to Data Science]()
-
-2016
 
 This was one of the first pandas EDA I've ever done (done in 2016)
 
