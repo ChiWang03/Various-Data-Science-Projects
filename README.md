@@ -24,9 +24,6 @@ Extracting key skills from Data Scientists and Machine Learning Engineer job pos
 
 [Customs Wait Time Analysis](https://github.com/ChiWang03/Various-Data-Science-Projects/tree/master/Customs%20Wait%20Time%20Analysis)
 
-2019
-
-
 * Create Multiple Metrics to optimize customs wait time efficiency
 * EDA
   * Exploratory data analysis on customs wait time
