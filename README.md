@@ -62,7 +62,7 @@ Extracting key skills from Data Scientists and Machine Learning Engineer job pos
 - A short script that pulls twitter data from the twitter api based on a certain user.
 - In this case Elon Musk's tweets were pulled. 
 
-[Introduction to Data Science]()
+[Introduction to Data Science](https://github.com/ChiWang03/Various-Data-Science-Projects/tree/master/Introduction%20to%20Data%20Science)
 
 This was one of the first pandas EDA I've ever done (done in 2016)
 
